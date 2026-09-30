@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://json.schemastore.org/eksctl-config.json
+
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: devops-eks-project4
+  region: ap-south-1
+
+vpc:
+  nat:
+    gateway: Disable
+
+  clusterEndpoints:
+    publicAccess: true
+    privateAccess: false
+
+managedNodeGroups:
+
+  - name: devops-ng
+    instanceType: t3.small
+
+    desiredCapacity: 2
+    minSize: 2
+    maxSize: 2
+
+    volumeSize: 20
+    volumeType: gp3
+
+    privateNetworking: false
+
+    ssh:
+      allow: false
+
+    tags:
+      Project: devops-eks-project4
